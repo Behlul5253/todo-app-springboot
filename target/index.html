@@ -1,17 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>To-Do List</title>
+    <title>To-Do List with Categories</title>
 </head>
 <body>
     <h2>To-Do List Application</h2>
+    
+    <!-- Add Category Form -->
+    <form action="/categories/add" method="post">
+        <input type="text" name="name" placeholder="New category name..." required/>
+        <button type="submit">Add Category</button>
+    </form>
+    <br/>
+
+    <!-- Add Task Form -->
     <form action="/add" method="post">
         <input type="text" name="title" placeholder="New task..." required/>
+        <select name="categoryId">
+            <option value="">Select Category</option>
+            <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
+        </select>
         <button type="submit">Add Task</button>
     </form>
+
     <ul>
         <li th:each="task : ${tasks}">
-            <span th:text="${task.title}">Task</span>
+            <span th:text="${task.title}">Task</span> 
+            - <small th:text="${task.category != null ? task.category.name : 'No Category'}"></small>
             <a th:href="@{/delete/{id}(id=${task.id})}">Delete</a>
         </li>
     </ul>
