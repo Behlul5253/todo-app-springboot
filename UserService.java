@@ -17,7 +17,7 @@ public class UserService {
         if (userRepository.findByUsername(username).isPresent()) {
             throw new RuntimeException("Username already exists!");
         }
-        User user = new User(username, passwordEncoder.encode(password));
+        User user = new User(username, passwordEncoder.encode(password), "USER");
         return userRepository.save(user);
     }
 }
