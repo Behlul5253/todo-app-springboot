@@ -14,6 +14,9 @@ public class UserService {
     }
 
     public User registerUser(String username, String password) {
+        if (username == null || username.isBlank() || password == null || password.isBlank()) {
+            throw new IllegalArgumentException("Username and password cannot be empty.");
+        }
         if (userRepository.findByUsername(username).isPresent()) {
             throw new RuntimeException("Username already exists!");
         }

@@ -29,7 +29,7 @@ public class AuthController {
         try {
             userService.registerUser(username, password);
             return "redirect:/login?success";
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException | RuntimeException e) {
             model.addAttribute("error", e.getMessage());
             return "register";
         }
