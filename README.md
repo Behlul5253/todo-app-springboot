@@ -1,11 +1,5 @@
 # To-Do App with Spring Boot
 
-A simple RESTful To-Do application built using Spring Boot.
+![Java CI with Maven](https://github.com/Behlul5253/todo-app-springboot/actions/workflows/ci.yml/badge.svg)
 
-## Features
-- Create, read, update, and delete to-do items.
-- RESTful API architecture.
-
-## Tech Stack
-- Java
-- Spring Boot
+A full-stack task and category management application built with Spring Boot, Spring Security, JPA, and Thymeleaf.
