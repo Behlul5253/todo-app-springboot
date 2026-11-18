@@ -1,37 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>To-Do App</title>
+    <title>To-Do App - Responsive UI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-</head>
-<body class="container mt-5">
-    <h1>My Tasks</h1>
-    
-    <!-- Task Form / List UI -->
-    <ul id="task-list" class="list-group mb-4">
-        <!-- Dynamically populated via AJAX -->
-    </ul>
-
-    <script>
-        async function fetchTasks() {
-            try {
-                const response = await fetch('/api/tasks');
-                const tasks = await response.json();
-                const listEl = document.getElementById('task-list');
-                listEl.innerHTML = '';
-                tasks.forEach(task => {
-                    const li = document.createElement('li');
-                    li.className = 'list-group-item d-flex justify-content-between align-items-center';
-                    li.textContent = task.title;
-                    listEl.appendChild(li);
-                });
-            } catch (error) {
-                console.error('Error fetching tasks:', error);
-            }
+    <style>
+        .task-dashboard {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            transition: all 0.3s ease-in-out;
         }
 
-        // Fetch tasks on page load and periodically or after actions
-        fetchTasks();
-    </script>
+        .task-form-container {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 768px) {
+            .task-dashboard {
+                grid-template-columns: 1fr;
+            }
+            .task-form-container {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="container mt-4">
+    <h1 class="mb-4">My To-Do Dashboard</h1>
+    
+    <div class="task-dashboard">
+        <!-- Task List Section -->
+        <div>
+            <h3>Task List</h3>
+            <ul id="task-list" class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Sample Responsive Task
+                </li>
+            </ul>
+        </div>
+
+        <!-- Form Section -->
+        <div class="task-form-container">
+            <h3>Add New Task</h3>
+            <form>
+                <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Task title..." required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Add Task</button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
